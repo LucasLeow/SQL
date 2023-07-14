@@ -1,0 +1,124 @@
+- Many concepts in SQL
+- different jobs have different requirements
+- basic | intermediate | advanced
+- database dev
+    - SQL alone not sufficient
+
+1) Pre-requisites
+    - SQL : To interact with Relational DB
+    - Data stored within Relational DB
+    - App require data, need to interact with relational DB to retrieve data
+    - Several types of Relational DB
+        - Oracle
+        - MySQL
+        - Microsoft SQL Server
+        - Postgres
+        - Cloudbased
+            - Amazon Redshift
+            - Snowflake etc.
+
+        Which DB to choose?
+            - does not matter
+            - 80 - 90% SQL are similar (syntax | concepts)
+            - can apply across
+            - Slight differences (certain in-built functions different)
+                - slight syntactical difference
+        
+            Preferences:
+                - PostgresSQL
+                    - free & lightweight
+                    - need to install DB on system
+                - If using cloud based, need to set-up
+                - need IDE to connect to DB to perform operations
+                - each have own IDE
+
+                PostgresSQL : PgAdmin
+                MySQL : MySQL WorkBench
+                Oracle : SQL Developer
+
+        
+
+2) Basic SQL
+    2.1) Concepts
+        - What is relational DBMS
+            - how data is stored
+            - what is schema wrt relational db
+
+        - SQL commands
+            - DDL | DML | DCL | TCL | DQL
+            - what commands do
+
+        - Data Types
+            - String (VARCHAR , TEXT)
+            - Integer (INT, NUMBER)
+            - DATE
+            - FLOAT / DECIMAL
+            - BOOLEAN
+            - IDENTITY column (auto increment column)
+        
+        - Constraints
+            - primary key
+            - foreign key
+            - Check constraint, Not null constraint, Unique constraint, Default etc.
+
+        - Normalization in SQL
+            - 1NF, 2NF, 3NF, BCNF
+            - benefits of Normalization
+
+        - Operators
+            - Arithmetic operator
+            - Logical
+            - Comparison
+            - Union, Union all
+
+        - Case statements
+            - simple case + nested case
+        
+        - Important SQL clauses
+            - DISTINCT
+            - ORDER by
+            - Limit / Top
+
+        - Inner Join
+            - Fetch data from multiple tables
+
+    - Learning Resources
+        - install postgres & pgadmin
+        - 
+    - Practice Platforms
+        - StrataScratch
+        - LeetCode
+        - DataLemur
+    - Jobs
+        - Business Analyst
+        - Junior software eng
+        
+
+3) Intermediate SQL
+
+    - Concepts
+        - Groupby & Having clause
+        - Aggregate functions
+            - min | max | avg | sum | count
+        - Order of Execution
+        - Sub-Queries
+        - CTE Tables / WITH clause
+        - ALL types of joins
+            - LEFT | RIGHT | FULL OUTER | CROSS | SELF
+        - In-built functions
+            - String : Substring | Position | Coalesce
+            - Date : Extract, To_Date
+        - Window Functions
+            - RANK | DENSE_RANK | ROW_NUMBER | LEAD | LAG
+            - FIRST_VALUE | LAST_VALUE | NTH_VALUE
+        - Views
+
+    - Learning Resources
+        - 
+    - Practice Platforms
+        - same as from basics
+        
+    - Jobs
+        - Data Analyst
+        - Data Scientist
+4) SQL developer
