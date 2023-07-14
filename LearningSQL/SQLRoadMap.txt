@@ -117,8 +117,21 @@
         - 
     - Practice Platforms
         - same as from basics
-        
+
     - Jobs
         - Data Analyst
         - Data Scientist
-4) SQL developer
+
+4) Advanced SQL developer
+    - Concepts
+        - Recursive SQL Queries
+        - PIVOT Table | CrossTab
+        - Materialized Views
+        - Stored Procedure
+        - User Defined functions
+    
+    - Learning Resources
+        
+    - Jobs
+        - Data Engineer
+        - ETL Developer

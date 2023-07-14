@@ -1,0 +1,133 @@
+Data:
+    - essential in the modern technology world
+    - success of company depend on how well data utilized
+    - database to store data
+
+    - Any information / fact can be considered data
+        - name
+        - age
+        - date of birth
+        - address
+        - vehicle driven
+        
+        - Statistics
+        - Mathematics
+        - Details of School
+
+        - Can be in any form
+            - video
+            - image
+            - text
+            - file
+        
+
+-- What is Database --
+    - Used to store data
+    - "container" filled with data
+    - can easily access data
+    - protect data
+    - analyze data easily
+
+eg: College Timesheet Web App
+    - Staff Details
+    - Timesheet Details
+    - Student Attendance
+    - Student marks
+    etc.
+
+- App connect to DB to modify / retrieve data
+
+- Huge company need huge DB to store data
+    - dedicated computers / hardware to store / manage data
+
+-- DBMS --
+    - DBMS != Database
+    - Database is just container to store data
+
+    Database Management System
+        - Software to manage database
+        - need DBMS to interact with DB
+            - Store
+            - Retrieve
+            - Protect
+            - Create | Modify | Delete DB
+        - enter commands to interact with DB
+    
+-- Evolution of DB --
+    - Flat File DB : 1960
+        - Data stored in CSV etc.
+    - Hierachical DB & Network DB 
+        - Store data thru parent child r/s
+        - incapable of storing complex data r/s
+
+    - Relational DB
+        - 74% used currently
+        - slowly transiting to non-relational due to social media
+        - Oracle most widely used
+        - Data stored in tables
+            - Each table have rows & cols
+            - Each cols have name & data type (fields)
+                - Only data that satisfy rule can be inserted in the col.
+            - Each row treated as a record
+        - Foreign Key constraints used to form r/s b/w tables
+        - Info scattered across multiple tables linked by keys
+        - SQL used in DBMS to manipulate DB
+        - Most banks uses Relational DB
+
+
+    - Non-Relational DB
+
+        - Have multiple types of Non-relational DB:
+            - Key-Value DB
+                - aka key-value store
+                - simplest of all non-r/s db
+                - every data assigned a key
+                - To retrieve data, just provide key
+                - good for storing:
+                    - config data
+                    - state info
+                    - any data represented by dict / hash
+                    - eg: Redis | Memcached DB
+
+            - Document DB  
+                - aka document store
+                - also use unique key
+                - store data in structured format known as Document
+                    - JSON
+                    - VSAN
+                    - XML format etc.
+                - No specific format to follow
+                - Each document have its own structure
+                - Data can be queried & analyzed
+                eg: MongoDB | CouchDB
+
+            - Graph DB
+                - forms r/s using nodes & edges properties
+                - data represented by individual nodes
+                    - each node can have multiple properties
+                - edges used to represent connection
+                - good for storing data that have r/s / connections b/w data
+                    - facebook network connection
+                - useful for searching specific pattern
+                    - fraud detection
+                    - money laundering
+                eg: neo4j database
+            
+            - Wide Column DB
+                - aka column family DB
+                - use rows & cols
+                - dont use tables
+                - use column families
+                    - each row have own structure / schema
+                    - each row have unique row identifier
+                    - each row can have differnt cols with different types of data
+                    
+            - Search Engine DB
+            - Time Series DB 
+            etc.
+
+            - Each type store data differently
+
+        - MongoDB most widely used
+
+    Large companies use combination of relational & non-relational DB as required
