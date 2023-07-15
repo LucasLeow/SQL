@@ -80,21 +80,31 @@ SQL used by:
 == SQL Constraints ==
     - Limitation / restrictions applied to a column
     - impt to maintain data integrity (negative age value)
+
         - CHECK : control values that can be inserted
             - dont allow negative age
+                eg: gender VARCHAR(10) CHECK (gender IN ('M', 'F'))
         
         - NOT NULL: ensure column value never blank / empty / null
+                eg: last_name VARCHAR(100) NOT NULL,
 
         - UNIQUE: values inserted in every row is unique
             - null values allowed
             - null values are unique, thus multiple null allowed
+                eg: id INT NOT NULL UNIQUE
 
         - PRIMARY KEY: ensure that column is unique & not null
             - each table can only have 1 PRIMARY KEY
+                eg: address_id VARCHAR(20) PRIMARY KEY
         
         - FOREIGN KEY: form r/s b/w tables
             - parent-child r/s
             - child's key reference to parent's key
+                 eg: CONSTRAINT fk_stf_addr FOREIGN KEY(address_id) REFERENCES Address(address_id)
+                        - only address_id already present in the "Address" table can be inserted into address_id of "Staff" table
+
+                        - if "ADR1001" in "Address" table,
+                        - only "ADR1001" can be inserted into "Staff" table for given above constraint
 
 
 
@@ -103,6 +113,10 @@ SQL used by:
 
 1) Data Definition Language (DDL) 
 (define structure of DB (tables | views etc.))
+CREATE | DROP | ALTER
+
+CREATE (DB Objects like table | functions | views)
+
             CREATE TABLE IF NOT EXISTS  <table_name>
             (
                 col1 <data_type>,
@@ -128,24 +142,30 @@ SQL used by:
             );
 
 
-            DROP (remove db object like table | views | functions etc.)
+DROP (remove db object like table | views | functions etc.)
 
             DROP TABLE <table_name>
             DROP FUNCTION <function_name>
 
 
-            ALTER (modify structure of existing table)
-                - rename table | column
-                - modify column data type | add new cols | remove cols
-                - add / remove constraints
+ALTER (modify structure of existing table)
+    - rename table | column
+    - modify column data type | add new cols | remove cols
+    - add / remove constraints
 
             ALTER TABLE <table_name> DROP COLUMN <col_name>
             ALTER TABLE <table_name> RENAME TO <new_table_name>
+            ALTER TABLE <table_name> RENAME COLUMN <col_name> TO <new_col_name>
+                - ALTER TABLE Staff RENAME COLUMN first_name TO full_name;
+            ALTER TABLE <table_name> ALTER COLUMN <col_name> TYPE <new_data_type>
+                - ALTER TABLE Staff ALTER COLUMN age TYPE VARCHAR(5);
+            ALTER TABLE <table_name> ADD CONSTRAINT <constraint_name> <constraint_type> <col_name_to_apply_constraint>
+                - ALTER TABLE Staff ADD CONSTRAINT UNQ_STF UNIQUE (staff_type);
 
 
 2) Data Manipulation Language (DML) 
     - load | modify | remove data from DB
-
+    - INSERT | DELETE | UPDATE
 
 INSERT (load data into table)
 
@@ -155,6 +175,15 @@ INSERT (load data into table)
             (no col names specified, must provide for all column else null)
             INSERT INTO <table_name> VALUES
             (val1, val2, val3);
+
+            INSERT INTO Address (address_id, street, city, state, country)
+            VALUES ('ADR1011', '44940 Bluestem Circle', 'Baton Rouge', Louisiana', 'United States');
+
+            INSERT INTO Address VALUES
+            ('ADR1001','44940 Bluestem Circle','Baton Rouge','Louisiana','United States'),
+            ('ADR1002','029 Kropf Point','Richmond','Virginia','United States'),
+            ('ADR1003','96 Jay Road','Dallas','Texas','United States'),
+            ('ADR1004','15 Harbort Lane','Roanoke','Virginia','United States');
 
 UPDATE (modify data in table)
 
@@ -166,9 +195,61 @@ UPDATE (modify data in table)
             SETG col1=<new_val>, col2=<new_val>
             WHERE id=<val>;
 
+            UPDATE Address
+            SET country = 'Malaysia'
+            WHERE address_id = 'ADR1003';
+
+            UPDATE Address
+            SET country = 'India', city = 'Bangalore'
+            WHERE address_id = 'ADR1005';
+            
+
 DELETE (delete data from table)
 
             DELETE FROM <table_name>;
                 - remove all data from table
 
             DELETE FROM <table_name> WHERE id=<val>
+
+            DELETE FROM Address WHERE country = 'Malaysia';
+            DELETE FROM School; -- Delete all data in School Table
+            DELETE FROM Address; 
+
+3) Data Query Language (DQL)
+    - Retrieve data from DB
+    SELECT
+
+    SELECT <col_name>
+    FROM <table_name>
+    WHERE <join/filter> conditions
+
+    Method 1: (Recommended)
+    SELECT T1.col1 as C1, T2.col2 as C2, T1.col3 as C3
+    FROM table1 as T1
+    JOIN table2 as T2 ON T1.col1 = T2.col1 AND T1.col2 = T2.col2;
+
+    Method 2:
+    SELECT T1.col1 as C1, T2.col2 as C2, T1.col3 as C3
+    FROM table1 as T1, table2 as T2
+    WHERE T1.col1 = T2.col1
+    AND T1.col2 = T2.col2;
+
+
+
+
+
+    
+
+
+4) Data Control Language (DCL)
+    - access between different databases / schemas
+    GRANT | REVOKE
+
+5) Transaction Control Language (TCL)
+    - used to save / undo DML transactions in DB
+
+    COMMIT: Save open transaction (INSERT | DELETE | UPDATE)
+
+    ROLLBACK: Undo transaction not yet committed
+
+    SAVEPOINT: create reference points between transactions that can either commit or rollback
