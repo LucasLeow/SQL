@@ -219,6 +219,11 @@ DELETE (delete data from table)
     - Retrieve data from DB
     SELECT
 
+    SELECT * FROM <table_name> (fetch all cols / records from table)
+        - SELECT * FROM Students; 
+
+    SELECT id, first_name FROM Students;
+
         -- Operators in SQL useful in SELECT queries --
             Comparison Operators: =, <>, !=, >, <, >=, <=
 
@@ -230,6 +235,11 @@ DELETE (delete data from table)
     
             SELECT * FROM Staff_Salary ORDER BY salary;
             SELECT * FROM Staff_Salary ORDER BY salary desc;
+
+            SELECT *
+            FROM myTable
+            ORDER BY
+            Col1 DESC, Col2 ASC;
 
             SELECT * FROM Staff_Salary
             WHERE salary BETWEEN 5000 AND 10000
@@ -268,13 +278,6 @@ DELETE (delete data from table)
                 SELECT (5 + 2) AS total; -- outputs 7 in "total" column
 
 
-
-    SELECT * FROM <table_name> (fetch all cols / records from table)
-        - SELECT * FROM Students; 
-
-    SELECT id, first_name FROM Students;
-
-
     SELECT <col_name>
     FROM <table_name>
     WHERE <join/filter> conditions
@@ -289,6 +292,20 @@ DELETE (delete data from table)
     FROM table1 as T1, table2 as T2
     WHERE T1.col1 = T2.col1
     AND T1.col2 = T2.col2;
+
+    -- CASE statements --
+        - if else condition
+
+    
+    SELECT staff_id, salary,
+    CASE 
+        WHEN salary >= 10000 THEN 'High Salary'
+        WHEN salary BETWEEN 5000 AND 10000 THEN 'Average Salary'
+        WHEN salary < 5000 THEN 'Low Salary'
+    END AS RANGE -- creates a "range" column for 'High Salary' / 'Average Salary' to be placed
+    FROM Staff_Salary
+    ORDER BY 2 DESC; -- order by column 2
+
 
 
 
