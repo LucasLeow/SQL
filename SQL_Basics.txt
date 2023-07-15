@@ -1,0 +1,174 @@
+SQL used by:    
+    - Quality Analyst
+    - Data Analyst
+    - Business Analyst
+    - Data Engineers
+    - Data Scientists
+    - Software Engineers
+
+
+-- What is SQL --
+    - Structured Query Language
+    - Used to interact with Relational DB 
+        - Read | Write data
+        - Create | Modify | Delete DB
+        - protect data
+
+    RDBMS (Relational DB Management System) 
+        - Oracle
+        - MySQL
+        - Microsoft SQL Server
+        - Postgres SQL
+        - IBM Db2
+        - SQLite
+        - MariaDB
+        - TeraData
+        - Hive
+
+    - Syntax will be 80% similar across all RDBMS
+
+-- RDBMS Structure --
+    - data stored in multiple tables
+    - each table have set of rows & cols
+    - cols are fields
+    - rows are entries / records
+
+-- SQL Commands --
+    - 5 types
+        1) Data Definition Language (DDL)
+
+            - CREATE : Create new DB objects (Tables | Views | Functions  )
+            - DROP : Remove DB object from DB
+            - ALTER : Modify structure of existing table
+            - TRUNCATE : Remove all data from table at once
+
+        2) Data Manipulation Language (DML)
+            - INSERT
+            - UPDATE
+            - DELETE
+            - MERGE
+
+        3) Data Control Language (DCL)
+            - GRANT
+            - REVOKE
+
+        4) Transaction Control Language (TCL)
+            - COMMIT
+            - ROLLBACK
+            - SAVEPOINT
+
+        5) Data Query Language (DQL)
+            - SELECT
+
+== SQL Data Types ==
+    - Each column has data type associated
+    - Like a "Rule" in order for data to be inserted to a column
+
+    5 most Basic Datatypes:
+        1) VARCHAR(size)
+            - variable character
+            - storing strings
+        2) INT
+            - whole numbers
+        3) DATE
+            - date values in any format
+        4) FLOAT
+            - decimal
+        5) BOOLEAN
+            - true or false
+
+== SQL Constraints ==
+    - Limitation / restrictions applied to a column
+    - impt to maintain data integrity (negative age value)
+        - CHECK : control values that can be inserted
+            - dont allow negative age
+        
+        - NOT NULL: ensure column value never blank / empty / null
+
+        - UNIQUE: values inserted in every row is unique
+            - null values allowed
+            - null values are unique, thus multiple null allowed
+
+        - PRIMARY KEY: ensure that column is unique & not null
+            - each table can only have 1 PRIMARY KEY
+        
+        - FOREIGN KEY: form r/s b/w tables
+            - parent-child r/s
+            - child's key reference to parent's key
+
+
+
+== Syntax ==
+
+
+1) Data Definition Language (DDL) 
+(define structure of DB (tables | views etc.))
+            CREATE TABLE IF NOT EXISTS  <table_name>
+            (
+                col1 <data_type>,
+                col2 <data_type>,
+                CONSTRAINT <constraint_name>
+            );
+
+            CREATE TABLE IF NOT EXISTS Staff
+            (
+                staff_id VARCHAR(20),
+                stafff_type VARCHAR(30),
+                school_id VARCHAR(20),
+                first_name VARCHAR(100) NOT NULL,
+                last_name VARCHAR(100) NOT NULL,
+                age INT,
+                dob DATE,
+                gender VARCHAR(10) CHECK (gender IN ('M', 'F')),
+                join_date DATE,
+                address_id VARCHAR(20),
+                CONSTRAINT pk_stf PRIMARY KEY(staff_id),
+                CONSTRAINT fk_stf_schl FOREIGN KEY(school_id) REFERENCES School(school_id),
+                CONSTRAINT fk_stf_addr FOREIGN KEY(address_id) REFERENCES Address(address_id)
+            );
+
+
+            DROP (remove db object like table | views | functions etc.)
+
+            DROP TABLE <table_name>
+            DROP FUNCTION <function_name>
+
+
+            ALTER (modify structure of existing table)
+                - rename table | column
+                - modify column data type | add new cols | remove cols
+                - add / remove constraints
+
+            ALTER TABLE <table_name> DROP COLUMN <col_name>
+            ALTER TABLE <table_name> RENAME TO <new_table_name>
+
+
+2) Data Manipulation Language (DML) 
+    - load | modify | remove data from DB
+
+
+INSERT (load data into table)
+
+            INSERT INTO <table_name> (col1, col2, col3)
+            VALUES ("value1", value2, value3);
+
+            (no col names specified, must provide for all column else null)
+            INSERT INTO <table_name> VALUES
+            (val1, val2, val3);
+
+UPDATE (modify data in table)
+
+            UPDATE <table_name>
+            SET col1 = newval
+            WHERE id = <val>;
+
+            UPDATE <table_name>
+            SETG col1=<new_val>, col2=<new_val>
+            WHERE id=<val>;
+
+DELETE (delete data from table)
+
+            DELETE FROM <table_name>;
+                - remove all data from table
+
+            DELETE FROM <table_name> WHERE id=<val>
