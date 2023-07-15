@@ -219,6 +219,62 @@ DELETE (delete data from table)
     - Retrieve data from DB
     SELECT
 
+        -- Operators in SQL useful in SELECT queries --
+            Comparison Operators: =, <>, !=, >, <, >=, <=
+
+                SELECT * FROM Subjects WHERE subject_name = 'Mathematics';
+                SELECT * FROM Subjects WHERE subject_name <> 'Mathematics';
+                SELECT * FROM Staff_Salary WHERE salary <= 10000;
+
+        -- More SELECT Clauses  --
+    
+            SELECT * FROM Staff_Salary ORDER BY salary;
+            SELECT * FROM Staff_Salary ORDER BY salary desc;
+
+            SELECT * FROM Staff_Salary
+            WHERE salary BETWEEN 5000 AND 10000
+            ORDER BY salary;
+
+            SELECT * FROM Subjects
+            WHERE subject_name IN ('Mathematics', 'Science', 'Arts');
+
+            SELECT * FROM Subjects
+            WHERE subject_name NOT IN ('Mathematics', 'Science', 'Arts')
+            ORDER BY subject_name;
+
+            SELECT * FROM Subjects
+            WHERE subject_name LIKE 'S%'; -- starts with S
+
+            SELECT DISTINCT staff_type FROM Staff;
+                -- get unique values of a specific column
+
+            SELECT staff_type FROM Staff LIMIT 5;
+                -- fetch first 5 records
+
+        -- Logical operators --
+            AND & OR
+
+            SELECT * FROM Staff
+            WHERE age > 50 AND gender = 'F';
+
+            SELECT * FROM Staff
+            WHERE age > 50 OR gender = 'F';
+                (either age > 50 or gender is female)
+
+        -- Arithmetic operators --
+            +, -, *, /, %
+
+                SELECT (5 + 2); -- outputs 7 on an unknown column table
+                SELECT (5 + 2) AS total; -- outputs 7 in "total" column
+
+
+
+    SELECT * FROM <table_name> (fetch all cols / records from table)
+        - SELECT * FROM Students; 
+
+    SELECT id, first_name FROM Students;
+
+
     SELECT <col_name>
     FROM <table_name>
     WHERE <join/filter> conditions
@@ -238,7 +294,7 @@ DELETE (delete data from table)
 
 
 
-    
+
 
 
 4) Data Control Language (DCL)
