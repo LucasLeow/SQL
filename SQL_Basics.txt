@@ -329,6 +329,9 @@ DELETE (delete data from table)
     WHERE Sub.subject_name = 'Mathematics';
 
 
+-- UNION & UNION ALL --
+
+
 
 
 
