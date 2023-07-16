@@ -292,7 +292,7 @@ DELETE (delete data from table)
         WHEN salary >= 10000 THEN 'High Salary'
         WHEN salary BETWEEN 5000 AND 10000 THEN 'Average Salary'
         WHEN salary < 5000 THEN 'Low Salary'
-    END AS RANGE -- creates a "range" column for 'High Salary' / 'Average Salary' to be placed
+    END AS range -- creates a "range" column for 'High Salary' / 'Average Salary' to be placed
     FROM Staff_Salary
     ORDER BY 2 DESC; -- order by column 2
 
@@ -330,7 +330,41 @@ DELETE (delete data from table)
 
 
 -- UNION & UNION ALL --
+    - writing 2 different queries to retrieve 2 sets of different data into single table
+    - no. of cols in 1st query must equal no. of cols in 2nd query
+    - datatype in both queries for all cols must be the same
 
+    UNION
+        - combines result from 1st & 2nd query if there is any overlap
+        - removes duplicate data
+    
+    UNION ALL
+        - shows all result, including duplicate data
+        - pure data fetched from query
+
+    -- fetch all staff teaching grade 8, 9, 10 AND non-teaching staff
+
+    SELECT Stf.staff_type,
+    (Stf.first_name||'  '||Stf.last_name) AS full_name,
+    Stf.age,
+    (CASE 
+    WHEN Stf.gender = 'M' THEN 'Male'
+    WHEN Stf.gender = 'F' THEN 'Female'
+    END) AS gender,
+    Stf.join_date
+    FROM Staff Stf
+    JOIN Classes Cls ON Stf.staff_id = Cls.teacher_id
+    WHERE Stf.staff_type = 'Teaching' AND Cls.class_name IN ('Grade 8','Grade 9', 'Grade 10')
+    UNION
+    SELECT staff_type,
+    (Stf.first_name||'  '||Stf.last_name) AS full_name, age,
+    (CASE 
+    WHEN Stf.gender = 'M' THEN 'Male'
+    WHEN Stf.gender = 'F' THEN 'Female'
+    END) AS gender,
+    join_date
+    FROM Staff
+    WHERE staff_type = 'Non-Teaching';
 
 
 
