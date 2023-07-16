@@ -366,7 +366,7 @@ DELETE (delete data from table)
     FROM Staff
     WHERE staff_type = 'Non-Teaching';
 
--- GROUP BY --
+-- GROUP BY & HAVING clause--
     - group data into categories (aggregating data)
         - eg: count number of students in each class
 
@@ -388,6 +388,27 @@ DELETE (delete data from table)
     FROM Student_Parent
     GROUP BY parent_id
     HAVING COUNT(1) > 1;
+
+-- Sub Queries --
+    - Query written within query
+    - aka nested queries
+
+    eg: fetch details of parents having more than 1 kid going to given school
+    SELECT (P.first_name||'  '|| P.last_name) AS parent_name,
+    (S.first_name||'  '||S.last_name ) AS student_name,
+    S.age as student_age,
+    S.gender AS student_gender,
+    (ADR.street||', '||ADR.city||', '||ADR.state||', '||ADR.country) AS address
+    FROM Parents P
+    JOIN Student_Parent SP ON P.id = SP.parent_id
+    JOIN Address ADR ON P.address_id = ADR.address_id
+    WHERE P.id In ( -- query below trims down to all parents with more than 1 kid in school
+        SELECT parent_id
+        FROM Student_Parent
+        GROUP BY parent_id
+        HAVING COUNT(1) > 1
+    )
+    ORDER BY 1;
 
 4) Data Control Language (DCL)
     - access between different databases / schemas
